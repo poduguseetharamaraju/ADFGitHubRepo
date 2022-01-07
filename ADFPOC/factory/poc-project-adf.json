@@ -1,0 +1,9 @@
+{
+	"name": "poc-project-adf",
+	"location": "canadaeast",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "4c3bd0b2-8f50-46e2-94fc-3313b05d1956",
+		"tenantId": "2c8b431b-c07d-4408-8304-f36a3f15283e"
+	}
+}

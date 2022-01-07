@@ -1,0 +1,25 @@
+{
+	"name": "tr_schedule_pocproject2_ingest_population_data",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Stopped",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "pl_pocproject2_ingest_population_data",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Minute",
+				"interval": 2,
+				"startTime": "2021-12-08T07:25:00",
+				"endTime": "2021-12-08T07:30:00",
+				"timeZone": "Eastern Standard Time"
+			}
+		}
+	}
+}
