@@ -1,0 +1,36 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "poc-project-adf"
+		},
+		"ls_ablob_pocprojectsa_connectionString": {
+			"value": ""
+		},
+		"ls_adls_pocprojectdl_accountKey": {
+			"value": ""
+		},
+		"ls_azadls2_pocproject2_accountKey": {
+			"value": ""
+		},
+		"ls_azblob_pocproject2_connectionString": {
+			"value": ""
+		},
+		"ls_adls_pocprojectdl_properties_typeProperties_url": {
+			"value": "https://pocprojectdl.dfs.core.windows.net/"
+		},
+		"ls_azadls2_pocproject2_properties_typeProperties_url": {
+			"value": "https://pocprojectadlsgen2.dfs.core.windows.net"
+		},
+		"ls_http_ecdc_pocproject2_properties_typeProperties_url": {
+			"value": "https://github.com"
+		},
+		"ls_http_ecdc_pocproject2_param_properties_typeProperties_url": {
+			"value": "@{linkedService().BaseURL}"
+		},
+		"tr_event_pocproject2_ingest_population_data_properties_typeProperties_scope": {
+			"value": "/subscriptions/a828197b-8657-480c-8741-d5af63847f66/resourceGroups/poc_project_rg/providers/Microsoft.Storage/storageAccounts/pocprojectstorageacc"
+		}
+	}
+}

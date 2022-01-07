@@ -1,0 +1,125 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "poc-project-adf"
+		},
+		"ls_ablob_pocprojectsa_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ls_ablob_pocprojectsa'"
+		},
+		"ls_adls_pocprojectdl_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'ls_adls_pocprojectdl'"
+		},
+		"ls_azadls2_pocproject2_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'ls_azadls2_pocproject2'"
+		},
+		"ls_azblob_pocproject2_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ls_azblob_pocproject2'"
+		},
+		"ls_adls_pocprojectdl_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://pocprojectdl.dfs.core.windows.net/"
+		},
+		"ls_azadls2_pocproject2_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://pocprojectadlsgen2.dfs.core.windows.net"
+		},
+		"ls_http_ecdc_pocproject2_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://github.com"
+		},
+		"ls_http_ecdc_pocproject2_param_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "@{linkedService().BaseURL}"
+		},
+		"tr_event_pocproject2_ingest_population_data_properties_typeProperties_scope": {
+			"type": "string",
+			"defaultValue": "/subscriptions/a828197b-8657-480c-8741-d5af63847f66/resourceGroups/poc_project_rg/providers/Microsoft.Storage/storageAccounts/pocprojectstorageacc"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "poc-project-adf_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"ls_ablob_pocprojectsa_connectionString": {
+						"value": "[parameters('ls_ablob_pocprojectsa_connectionString')]"
+					},
+					"ls_adls_pocprojectdl_accountKey": {
+						"value": "[parameters('ls_adls_pocprojectdl_accountKey')]"
+					},
+					"ls_azadls2_pocproject2_accountKey": {
+						"value": "[parameters('ls_azadls2_pocproject2_accountKey')]"
+					},
+					"ls_azblob_pocproject2_connectionString": {
+						"value": "[parameters('ls_azblob_pocproject2_connectionString')]"
+					},
+					"ls_adls_pocprojectdl_properties_typeProperties_url": {
+						"value": "[parameters('ls_adls_pocprojectdl_properties_typeProperties_url')]"
+					},
+					"ls_azadls2_pocproject2_properties_typeProperties_url": {
+						"value": "[parameters('ls_azadls2_pocproject2_properties_typeProperties_url')]"
+					},
+					"ls_http_ecdc_pocproject2_properties_typeProperties_url": {
+						"value": "[parameters('ls_http_ecdc_pocproject2_properties_typeProperties_url')]"
+					},
+					"ls_http_ecdc_pocproject2_param_properties_typeProperties_url": {
+						"value": "[parameters('ls_http_ecdc_pocproject2_param_properties_typeProperties_url')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "poc-project-adf_ArmTemplate_1",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_1.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"tr_event_pocproject2_ingest_population_data_properties_typeProperties_scope": {
+						"value": "[parameters('tr_event_pocproject2_ingest_population_data_properties_typeProperties_scope')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'poc-project-adf_ArmTemplate_0')]"
+			]
+		}
+	]
+}
